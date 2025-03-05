@@ -6,5 +6,6 @@ using namespace std;
 int main(){
     cout<<"welcome to huffman zipper"<<endl;
      frequencyCount("aaabbbcccccc");
+     decodeFile();
     return 0;
 }

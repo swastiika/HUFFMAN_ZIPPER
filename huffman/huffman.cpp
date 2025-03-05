@@ -1,13 +1,21 @@
 #include <iostream>
 #include <queue>
 #include "MinheapNode.h"
+#include<unordered_map>
 using namespace std;
+void display(MinHeapNode *root,string str){
+    if(!root) return;
+    if(root->data!='$') cout<<root->data<<":"<<str;
+    display(root->left,str+"0");
+    display(root->right,str+"1");
+    return;
 
-void heap(char data[], int freq[], int size) {
+}
+void heap(unordered_map<char,int> &del) {
     priority_queue<MinHeapNode*, vector<MinHeapNode*>, compare> minheap;
     MinHeapNode *left, *right, *top;
-    for (int i = 0; i < size; ++i) {
-        minheap.push(new MinHeapNode(data[i], freq[i]));
+    for(auto it=del.begin(); it!=del.end(); ++it ) {
+        minheap.push(new MinHeapNode(it->first, it->second));
     }
     while (minheap.size() != 1) {
         left = minheap.top();
@@ -19,5 +27,5 @@ void heap(char data[], int freq[], int size) {
         top->right = right;
         minheap.push(top);
     }
-   
+   display(minheap.top(),"");
 }

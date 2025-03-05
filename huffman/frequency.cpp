@@ -4,7 +4,7 @@
 #include<sstream>
 #include "huffman.cpp"
 using namespace std;
-void frequencyCount(string str){
+void frequencyCount(){
 
  unordered_map<char,int> freq;
  ifstream input("encode.txt");

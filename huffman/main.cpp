@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <chrono>
-#include "frequency.cpp" 
+#include "huffman.cpp" 
 
 
 long getFileSize(const string& filename) {
@@ -21,13 +21,15 @@ using namespace std;
 
 int main() {
     cout << "Welcome to Huffman Zipper" << endl;
+   
+ 
     string checker;
     cout << "Enter the mode: compress or decompress? : ";
     cin >> checker;
 
     if (checker == "compress") {
         auto startCompression = chrono::high_resolution_clock::now();
-        frequencyCount();
+         compressFile("encode.txt","huffman.txt");
         auto endCompression = chrono::high_resolution_clock::now();
         chrono::duration<double> compressionTime = endCompression - startCompression;
         cout << "Compression Time: " << compressionTime.count() << " seconds" << endl;
@@ -43,7 +45,7 @@ int main() {
     else if (checker == "decompress") {
 
         auto startDecompression = chrono::high_resolution_clock::now();
-        decodeFile();
+           decompress("huffman.txt","decode.txt");
         auto endDecompression = chrono::high_resolution_clock::now();
         chrono::duration<double> decompressionTime = endDecompression - startDecompression;
         cout << "Decompression Time: " << decompressionTime.count() << " seconds" << endl;
